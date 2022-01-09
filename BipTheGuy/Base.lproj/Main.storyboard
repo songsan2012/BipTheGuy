@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +10,48 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="BipTheGuy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clown" translatesAutoresizingMaskIntoConstraints="NO" id="I1g-37-3yW">
+                                <rect key="frame" x="0.0" y="12" width="320" height="325"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="325" id="gkd-cy-xr8"/>
+                                    <constraint firstAttribute="width" constant="320" id="pSY-aM-tT0"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yIL-Ue-tAk">
+                                <rect key="frame" x="138" y="349" width="44" height="30"/>
+                                <state key="normal" title="Punch"/>
+                                <connections>
+                                    <action selector="punchButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zWO-sx-Hd0"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="I1g-37-3yW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="12" id="3ng-T9-9KP"/>
+                            <constraint firstItem="yIL-Ue-tAk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Deu-Mm-iMH"/>
+                            <constraint firstItem="I1g-37-3yW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="EYh-E5-61z"/>
+                            <constraint firstItem="I1g-37-3yW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Lan-SH-Lo9"/>
+                            <constraint firstItem="yIL-Ue-tAk" firstAttribute="top" secondItem="I1g-37-3yW" secondAttribute="bottom" constant="12" id="OkU-cz-Opb"/>
+                            <constraint firstItem="I1g-37-3yW" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="OzY-6o-dgD"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="punchButton" destination="yIL-Ue-tAk" id="GHf-bf-s4V"/>
+                        <outlet property="uiImage" destination="I1g-37-3yW" id="bQY-o0-lIk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="138.75" y="116.19718309859155"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="clown" width="1786" height="1779"/>
+    </resources>
 </document>
