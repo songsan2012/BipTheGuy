@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,30 +18,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clown" translatesAutoresizingMaskIntoConstraints="NO" id="I1g-37-3yW">
-                                <rect key="frame" x="0.0" y="12" width="320" height="325"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="325" id="gkd-cy-xr8"/>
-                                    <constraint firstAttribute="width" constant="320" id="pSY-aM-tT0"/>
-                                </constraints>
+                                <rect key="frame" x="0.0" y="12" width="320" height="502"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yIL-Ue-tAk">
-                                <rect key="frame" x="138" y="349" width="44" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yIL-Ue-tAk">
+                                <rect key="frame" x="110" y="526" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="YxS-cP-eP4"/>
+                                    <constraint firstAttribute="height" constant="30" id="sgS-e8-7XS"/>
+                                </constraints>
                                 <state key="normal" title="Punch"/>
                                 <connections>
                                     <action selector="punchButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zWO-sx-Hd0"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="I1g-37-3yW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="12" id="3ng-T9-9KP"/>
-                            <constraint firstItem="yIL-Ue-tAk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Deu-Mm-iMH"/>
-                            <constraint firstItem="I1g-37-3yW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="EYh-E5-61z"/>
-                            <constraint firstItem="I1g-37-3yW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Lan-SH-Lo9"/>
-                            <constraint firstItem="yIL-Ue-tAk" firstAttribute="top" secondItem="I1g-37-3yW" secondAttribute="bottom" constant="12" id="OkU-cz-Opb"/>
-                            <constraint firstItem="I1g-37-3yW" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="OzY-6o-dgD"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="yIL-Ue-tAk" secondAttribute="bottom" constant="12" id="2ED-va-Vxf"/>
+                            <constraint firstItem="yIL-Ue-tAk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6pf-P0-8na"/>
+                            <constraint firstItem="I1g-37-3yW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="12" id="LNH-kV-DHn"/>
+                            <constraint firstItem="I1g-37-3yW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="QfC-nC-tRp"/>
+                            <constraint firstItem="I1g-37-3yW" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="bh6-Zr-4fz"/>
+                            <constraint firstItem="yIL-Ue-tAk" firstAttribute="top" secondItem="I1g-37-3yW" secondAttribute="bottom" constant="12" id="rTd-59-VD2"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="punchButton" destination="yIL-Ue-tAk" id="GHf-bf-s4V"/>
@@ -53,5 +55,8 @@
     </scenes>
     <resources>
         <image name="clown" width="1786" height="1779"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
