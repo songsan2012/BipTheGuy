@@ -71,7 +71,6 @@ class ViewController: UIViewController {
     
     // -- When the Punch Button Pressed -- Start
     
-            
        func playSound(_ name: String) {
                        
                        if let sound = NSDataAsset(name: name) {
@@ -89,7 +88,39 @@ class ViewController: UIViewController {
                        }
                        
        }
-            
+         
+    // -- When the Punch Button Pressed -- End
+    
+    @IBAction func imagePunchedTapped(_ sender: UITapGestureRecognizer) {
+        
+        let originalButtonFrame = uiImage.frame
+        let widthShrink: CGFloat = 30
+        let heightShrink: CGFloat = 10
+        
+        
+        // -- Animate the UI Image
+        let originalImageFrame = uiImage.frame
+        
+        
+        let smallerImageFrame = CGRect (
+            x: uiImage.frame.origin.x + widthShrink,
+            y: uiImage.frame.origin.y + heightShrink,
+            width: uiImage.frame.width - (2 * widthShrink),
+            height: uiImage.frame.height - (2 * heightShrink)
+        )
+
+        self.uiImage.frame = smallerImageFrame
+        
+        UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 10.0 , animations: {
+            self.uiImage.frame = originalImageFrame
+            }
+        )
+        
+        // -- Play the punch sound
+        self.playSound("\(self.punchSound)")
+        
+    }
+    
 
 }
 
