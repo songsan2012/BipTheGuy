@@ -11,19 +11,28 @@ import AVFoundation
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var uiImage: UIImageView!
+    @IBOutlet weak var imageView: UIImageView!
     
-    @IBOutlet weak var punchButton: UIButton!
+    @IBOutlet weak var cameraButton: UIButton!
     
     
     // -- Create Sound Support
-    var audioPlayer: AVAudioPlayer!
+        var audioPlayer: AVAudioPlayer!
+        
+        let punchSound = "punchSound"
     
-    let punchSound = "punchSound"
+    
+    // -- Create ImagePicker support
+    var imagePickerController = UIImagePickerController()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        
+        imagePickerController.delegate = self
+        
     }
     
     
@@ -37,39 +46,64 @@ class ViewController: UIViewController {
     
     
     
+    
+    
     // -- When the Punch Button Pressed -- Start
     
-        @IBAction func punchButtonPressed(_ sender: UIButton) {
+    func showAlert(_ Title: String, _ Message: String) {
+        
+        let alertController = UIAlertController(title: Title, message: Message, preferredStyle: .alert)
+        
+        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        
+        alertController.addAction(alertAction)
+        
+        present(alertController, animated: true, completion: nil)
+        
+    }
+    
+    
+        @IBAction func cameraButtonPressed(_ sender: UIButton) {
             
-            let originalButtonFrame = sender.frame
-            let widthShrink: CGFloat = 30
-            let heightShrink: CGFloat = 10
+//            showAlert("Alert Title here...", "You are awesome")
             
+            let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
             
-            // -- Animate the UI Image
-            let originalImageFrame = uiImage.frame
-            
-            
-            let smallerImageFrame = CGRect (
-                x: uiImage.frame.origin.x + widthShrink,
-                y: uiImage.frame.origin.y + heightShrink,
-                width: uiImage.frame.width - (2 * widthShrink),
-                height: uiImage.frame.height - (2 * heightShrink)
-            )
-
-            self.uiImage.frame = smallerImageFrame
-            
-            UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 10.0 , animations: {
-                self.uiImage.frame = originalImageFrame
+            let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default, handler: {
+                
+                (_) in
+                
+                // TODO: Addin the Photo Library code later
+                self.accessPhotoLibrary()
+                
+                
+                print("You clicked Photo Library")
                 }
             )
             
-            // -- Play the punch sound
-            self.playSound("\(self.punchSound)")
+            let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: {
+                
+                (_) in
+                
+                // TODO: Add in the Camera code later
+                self.accessCamera()
+                
+                print("You clicked Camera")
+                }
+            )
             
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            
+            alertController.addAction(photoLibraryAction)
+            alertController.addAction(cameraAction)
+            alertController.addAction(cancelAction)
+            
+            
+            present(alertController, animated: true, completion: nil)
+            
+
         }
-    
-    // -- When the Punch Button Pressed -- Start
     
        func playSound(_ name: String) {
                        
@@ -93,26 +127,26 @@ class ViewController: UIViewController {
     
     @IBAction func imagePunchedTapped(_ sender: UITapGestureRecognizer) {
         
-        let originalButtonFrame = uiImage.frame
+        let originalButtonFrame = imageView.frame
         let widthShrink: CGFloat = 30
         let heightShrink: CGFloat = 10
         
         
         // -- Animate the UI Image
-        let originalImageFrame = uiImage.frame
+        let originalImageFrame = imageView.frame
         
         
         let smallerImageFrame = CGRect (
-            x: uiImage.frame.origin.x + widthShrink,
-            y: uiImage.frame.origin.y + heightShrink,
-            width: uiImage.frame.width - (2 * widthShrink),
-            height: uiImage.frame.height - (2 * heightShrink)
+            x: imageView.frame.origin.x + widthShrink,
+            y: imageView.frame.origin.y + heightShrink,
+            width: imageView.frame.width - (2 * widthShrink),
+            height: imageView.frame.height - (2 * heightShrink)
         )
 
-        self.uiImage.frame = smallerImageFrame
+        self.imageView.frame = smallerImageFrame
         
         UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 10.0 , animations: {
-            self.uiImage.frame = originalImageFrame
+            self.imageView.frame = originalImageFrame
             }
         )
         
@@ -124,3 +158,42 @@ class ViewController: UIViewController {
 
 }
 
+
+// Add the support Extensions
+extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            imageView.image = editedImage
+        }
+        else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            imageView.image = originalImage
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func accessPhotoLibrary()
+    {
+        imagePickerController.sourceType = .photoLibrary
+        present(imagePickerController, animated: true, completion: nil)
+        
+    }
+    
+    func accessCamera() {
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePickerController.sourceType = .camera
+            present(imagePickerController, animated: true, completion: nil)
+        }
+        else {
+            showAlert("Camera Not Available", "There is no camera found")
+        }
+
+    }
+    
+}
